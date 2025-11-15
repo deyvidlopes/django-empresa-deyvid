@@ -1,11 +1,15 @@
 from django.shortcuts import redirect, render
-from .models import Funcionarios
+from .models import Funcionarios, Produto
 from .forms import ContatoModelForm
 # Create your views here.
 def home(request):
     return render(request,'home.html')
 def produtos(request):
-    return render(request,'produtos.html')
+    produtos = Produto.objects.filter(em_estoque=True)
+    context = {
+        'produtos': produtos
+    }
+    return render(request,'produtos.html',context)
 def clientes(request):
     return render(request,'clientes.html')
 def funcionarios(request):
@@ -41,3 +45,29 @@ def formulario_contato_view(request):
 # Uma view simples para a página de "sucesso"
 def contato_sucesso_view(request):
     return render(request, 'contato/contato_sucesso.html')
+
+from django.shortcuts import render
+# Importe o modelo de Produto que criámos
+from .models import Produto
+
+# --- View para a Página de Produtos ---
+
+def lista_produtos(request):
+    """
+    Esta view busca todos os produtos cadastrados no banco de dados
+    e os envia para o template 'produtos.html'.
+    """
+    
+    # 1. Buscar todos os objetos "Produto" na base de dados
+    # O .order_by('nome') organiza os produtos por ordem alfabética
+    produtos = Produto.objects.all().order_by('nome')
+    
+    # 2. Criar um "contexto" (um dicionário) para enviar os dados para o template
+    # A chave 'produtos' será o nome da variável que usaremos no HTML
+    contexto = {
+        'produtos': produtos
+    }
+    
+    # 3. Renderizar a página HTML (template) com os dados (contexto)
+    # Vamos chamar o nosso template de 'produtos.html'
+    return render(request, 'produtos.html', contexto)

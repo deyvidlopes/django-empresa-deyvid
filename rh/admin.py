@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Funcionarios, MensagemContato
+from .models import Funcionarios, MensagemContato, Produto
 
 @admin.register(Funcionarios)
 class FuncionariosAdmin(admin.ModelAdmin):
@@ -18,3 +18,8 @@ class MensagemContatoAdmin(admin.ModelAdmin):
     list_filter = ('lido', 'data_envio')
     search_fields = ('nome', 'email', 'assunto')
     
+@admin.register(Produto)
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'categoria')
+    list_filter = ('nome', 'categoria')
+    search_fields = ('nome', 'categoria')

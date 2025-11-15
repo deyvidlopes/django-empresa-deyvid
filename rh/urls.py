@@ -14,4 +14,3 @@ urlpatterns = [
     # Ex: http://127.0.0.1:8000/contato/sucesso/
     path('contato/sucesso/', views.contato_sucesso_view, name='contato_sucesso'),
 ]
-    

@@ -3,5 +3,22 @@
 
 {% block content %}
     <h3>Página de Produtos</h3>
-
+    {% for produto in produtos %}
+    <section class="card-produtos">
+        {% if produto.foto.url != null %}
+        <img src="{{ produto.foto.url }}" alt="Foto de {{produto.nome}}">
+        {% else %}
+        <img src="/static/images/usuario-sem-imagem.png" alt="Foto padrão do protuto">
+        {% endif %}
+        <div class="info-produtos">
+            <h4>{{produto.nome}}</h4>
+            <p>Categoria: {{produto.categoria}} </p>
+            <p>Descrição: {{produto.descricao}} </p>
+            <p>Valor: {{produto.valor}}</p>
+            {% if Produto.status == True %}
+                <p>Situação: Ativo</p>
+            {% endif %}
+        </div>
+    </section>
+    {% endfor %}
 {% endblock %}

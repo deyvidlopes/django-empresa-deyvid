@@ -36,7 +36,7 @@ main{
     min-height: 100vh;    
 }
 
-.card-funcionario {
+.card-funcionario, .card-produto {
     display:flex;
     width: 36rem;
     background-color: #fff;
@@ -52,7 +52,7 @@ main{
     
 }
 
-.info-funcionario {    
+.info-funcionario, .card-produto {    
     display: flex;
     flex-direction: column;
     align-items: center;
